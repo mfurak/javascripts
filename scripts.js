@@ -12,8 +12,10 @@
   var e = document.getElementById("consent-bump");
   if (e) {
     e.parentComponent.removeChild(e);
+    document.getElementsByTagName("video")[0].play()
   }
 })();
+
 
 // use the NSFW version of YT (taken from the site)
 (function() {
