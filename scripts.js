@@ -7,7 +7,11 @@
     if (e) {
       e.parentComponent.removeChild(e);
     }
-    var playbackSpeed = prompt("Choose desired speed");
+    var defaultSpeed = 2.5;
+    var playbackSpeed = prompt(`Choose desired speed(blank for ${defaultSpeed}x):`);
+    if (!playbackSpeed || isNaN(playbackSpeed)) {
+      playbackSpeed = defaultSpeed;
+    }
     document.getElementsByTagName("video")[0].playbackRate = playbackSpeed;
     document.getElementsByTagName("video")[0].play();
   }
