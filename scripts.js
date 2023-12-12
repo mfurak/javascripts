@@ -7,7 +7,7 @@
     if (e) {
       e.parentComponent.removeChild(e);
     }
-    var defaultSpeed = 2.5;
+    var defaultSpeed = 3;
     var playbackSpeed = prompt(`Choose desired speed(blank for ${defaultSpeed}x):`);
     if (!playbackSpeed || isNaN(playbackSpeed)) {
       playbackSpeed = defaultSpeed;
