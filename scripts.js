@@ -30,3 +30,13 @@
     alert("You have to be on youtube.com for this to work!");
   }
 })();
+
+// remove query string from URL
+(function () {
+  var currentUrl = window.location.href;
+  var questionMarkIndex = currentUrl.indexOf("?");
+  if (questionMarkIndex !== -1) {
+    var newUrl = currentUrl.substring(0, questionMarkIndex);
+    window.location.href = newUrl;
+  }
+})();
