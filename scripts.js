@@ -1,33 +1,27 @@
-//prompt that asks for custom speed for YT playback
-// also removes YT consent dialog(might not be needed since YT doesn't use it anymore)
+// YT speed prompt
 (function () {
-  var isYT = window.location.href.indexOf("youtube.com");
-  if (isYT !== -1) {
-    var e = document.getElementById("consent-bump");
-    if (e) {
-      e.parentComponent.removeChild(e);
-    }
-    var defaultSpeed = 3;
+  if (window.location.href.indexOf("youtube.com") !== -1) {
+    var defaultSpeed = 2.5;
     var playbackSpeed = prompt(
       `Choose desired speed(blank for ${defaultSpeed}x):`,
     );
     if (!playbackSpeed || isNaN(playbackSpeed)) {
       playbackSpeed = defaultSpeed;
     }
-    document.getElementsByTagName("video")[0].playbackRate = playbackSpeed;
-    document.getElementsByTagName("video")[0].play();
+    var player = document.getElementsByTagName("video")[0];
+    player.playbackRate = playbackSpeed;
+    player.play();
   }
 })();
 
-// use the NSFW version of YT (taken from the site)
+// YT remove params
 (function () {
-  var originalBaseURL = window.location.href;
-  var isyt = originalBaseURL.indexOf("youtube.com");
-  if (isyt != -1 && originalBaseURL.indexOf("nsfwyoutube.com") == -1) {
-    var http_url = originalBaseURL.replace("youtube.com", "nsfwyoutube.com");
-    window.location = http_url;
-  } else {
-    alert("You have to be on youtube.com for this to work!");
+  var address = new URL(window.location.href);
+  if (address.hostname.indexOf("youtube.com") !== -1) {
+    var searchParams = address.searchParams;
+    searchParams.delete("start_radio");
+    searchParams.delete("list");
+    window.location = address.href;
   }
 })();
 
