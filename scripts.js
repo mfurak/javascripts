@@ -14,7 +14,7 @@
   }
 })();
 
-// YT remove params
+// Remove params
 (function () {
   var address = new URL(window.location.href);
   if (address.hostname.indexOf("youtube.com") !== -1) {
@@ -22,15 +22,7 @@
     searchParams.delete("start_radio");
     searchParams.delete("list");
     window.location = address.href;
-  }
-})();
-
-// remove query string from URL
-(function () {
-  var currentUrl = window.location.href;
-  var questionMarkIndex = currentUrl.indexOf("?");
-  if (questionMarkIndex !== -1) {
-    var newUrl = currentUrl.substring(0, questionMarkIndex);
-    window.location.href = newUrl;
+  } else {
+    window.location = address.href.replace(address.search, "");
   }
 })();
