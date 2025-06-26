@@ -21,6 +21,7 @@
     var searchParams = address.searchParams;
     searchParams.delete("start_radio");
     searchParams.delete("list");
+    searchParams.delete("index");
     window.location = address.href;
   } else {
     window.location = address.href.replace(address.search, "");
